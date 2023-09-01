@@ -46,13 +46,13 @@ public class InstaMonkeyReworkMod : BloonsTD6Mod
         SavedPlacedInstas = new Dictionary<int, string>();
     }
 
-    public static int GetCostForThing(TowerModel towerModel)
+  public static int GetCostForThing(TowerModel towerModel)
+{
+    // Check if the towerModel is an insta-monkey and return 0 cost for them
+    if (towerModel.isInstaMonkey)
     {
-        var cost = Game.instance.model.GetTowerFromId(towerModel.name).cost +
-                   towerModel.GetAppliedUpgrades().Sum(model => model.cost);
-
-        switch (InGame.instance.SelectedDifficulty)
-        {
+        return 0;
+    }
             case "Easy":
                 cost *= .85f;
                 break;
